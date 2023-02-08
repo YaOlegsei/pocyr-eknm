@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textTranslateInput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="top"
+        android:hint="@string/textInputLabelTranslator"
+        android:textColor="?colorOnPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/dividerContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ja pierdole jakie bydlo" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/dividerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="20dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="?colorOnBackground" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_keyboard_double_arrow_down"
+            app:tint="?colorOnBackground" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="?colorOnBackground" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/buttonMakeBookmark"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="?colorOnPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/textTranslateInput"
+        app:layout_constraintStart_toStartOf="@id/textTranslateInput"
+        app:layout_constraintTop_toBottomOf="@+id/dividerContainer"
+        tools:text="Я пєрдоле якє бидўо" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonContextAction"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="32dp"
+        app:iconTint="?colorOnBackground"
+        app:layout_constraintEnd_toEndOf="@+id/buttonMakeBookmark"
+        app:layout_constraintTop_toTopOf="@+id/buttonMakeBookmark"
+        tools:icon="@drawable/ic_bookmark_add" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonCopy"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="32dp"
+        app:iconTint="?colorOnBackground"
+
+        app:layout_constraintEnd_toEndOf="@+id/buttonContextAction"
+        app:layout_constraintTop_toBottomOf="@+id/buttonContextAction"
+        tools:icon="@drawable/ic_content_copy" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
