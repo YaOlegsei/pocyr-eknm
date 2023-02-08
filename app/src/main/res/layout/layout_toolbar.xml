@@ -14,7 +14,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonContextAction"
-            style="@style/Widget.AppCompat.Button.Small"
+            style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:insetTop="0dp"
@@ -22,6 +22,7 @@
             app:iconGravity="textStart"
             app:iconPadding="0dp"
             app:iconSize="32dp"
+            app:iconTint="?colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,22 +32,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:text="@string/poCyr"
             android:textColor="?colorOnPrimary"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/buttonQuestion"
             app:layout_constraintStart_toEndOf="@id/buttonContextAction"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="PoCyr" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonQuestion"
-            style="@style/Widget.AppCompat.Button.Small"
+            style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:icon="@drawable/ic_question_mark"
             app:iconGravity="textStart"
             app:iconSize="32dp"
+            app:iconTint="?colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
