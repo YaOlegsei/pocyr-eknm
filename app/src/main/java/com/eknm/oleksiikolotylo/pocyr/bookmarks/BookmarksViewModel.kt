@@ -8,10 +8,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.eknm.oleksiikolotylo.pocyr.MainViewModel
-import com.eknm.oleksiikolotylo.pocyr.translate.TranslationFragmentViewModel
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class BookmarksViewModel(private val bookmarksProvider: BookmarksProvider) : ViewModel() {
-    private var bookmarksTemp = listOf<BookMarksRecyclerAdapter.ManipulatedBookmark>()
+    private var bookmarksPending = listOf<BookMarksRecyclerAdapter.ManipulatedBookmark>()
         set(value) {
             field = value
             _tempBookmarksLiveData.value = value
@@ -19,9 +21,6 @@ class BookmarksViewModel(private val bookmarksProvider: BookmarksProvider) : Vie
     private val _tempBookmarksLiveData = MutableLiveData<List<BookMarksRecyclerAdapter.ManipulatedBookmark>>()
     val bookmarksLiveData: LiveData<List<BookMarksRecyclerAdapter.ManipulatedBookmark>>
         get() = MediatorLiveData<List<BookMarksRecyclerAdapter.ManipulatedBookmark>>().apply {
-            addSource(_tempBookmarksLiveData) {
-                value = it
-            }
             addSource(bookmarksProvider.bookmarksLiveData) {
                 value = it.map {
                     BookMarksRecyclerAdapter.ManipulatedBookmark(it, true)
@@ -30,13 +29,21 @@ class BookmarksViewModel(private val bookmarksProvider: BookmarksProvider) : Vie
 
         }
 
-    fun removeBookmark(bookmark: Bookmark) {
-        /*bookmarksTemp = bookmarksTemp.map {
-            if (it.bookmark == bookmark){
-                it.copy(isEnabled = false)
-            }
-        }filter { it != bookmark }*/
-        bookmarksProvider.removeBookmark(bookmark)
+    fun removeBookmark(bookmark: Bookmark):LiveData<Boolean> {
+        val removeBookmarkLiveData = MutableLiveData(true)
+        val disposable = Single.fromCallable {
+            bookmarksProvider.removeBookmark(bookmark)
+        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    removeBookmarkLiveData.value = true
+                }, {
+                    removeBookmarkLiveData.value = false
+                }
+            )
+        return removeBookmarkLiveData
     }
 
     companion object {

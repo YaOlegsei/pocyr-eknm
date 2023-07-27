@@ -20,16 +20,10 @@ class BookmarksProvider(applicationContext: Context) {
         get() = bookmarksDao.getBookmarks()
 
     fun saveBookmark(bookmark: Bookmark) {
-        Single
-            .fromCallable { bookmarksDao.addBookmark(bookmark) }
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        bookmarksDao.addBookmark(bookmark)
     }
 
     fun removeBookmark(bookmark: Bookmark) {
-        Single
-            .fromCallable { bookmarksDao.removeBookmark(bookmark) }
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        bookmarksDao.removeBookmark(bookmark)
     }
 }
