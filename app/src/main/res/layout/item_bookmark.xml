@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/bookmarkIcon"
+        android:id="@+id/removeBookmarkIcon"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_margin="12dp"
@@ -17,13 +17,15 @@
         app:tint="?colorOnBackground" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/bookmarkTextView"
         android:layout_width="0dp"
+        android:layout_marginEnd="8dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textColor="?colorOnPrimary"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/bookmarkIcon"
+        app:layout_constraintEnd_toStartOf="@id/removeBookmarkIcon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Ja pierdole jakie bydlo" />

@@ -9,6 +9,16 @@
         android:id="@+id/translationFragment"
         android:name="com.eknm.oleksiikolotylo.pocyr.translate.TranslationFragment"
         android:label="@string/translateFragmentLabel"
-        tools:layout="@layout/fragment_translation" />
+        tools:layout="@layout/fragment_translation" >
+        <action
+            android:id="@+id/action_translationFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.eknm.oleksiikolotylo.pocyr.bookmarks.BookmarksFragment"
+        android:label="@string/bookmarkFragmentLabel"
+        tools:layout="@layout/fragment_bookmarks" />
 
 </navigation>

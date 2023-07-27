@@ -59,7 +59,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/buttonMakeBookmark"
+        android:id="@+id/translatedTextTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
@@ -73,7 +73,7 @@
         tools:text="Я пєрдоле якє бидўо" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonContextAction"
+        android:id="@+id/buttonMakeBookmark"
         style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -84,8 +84,8 @@
         app:iconPadding="0dp"
         app:iconSize="32dp"
         app:iconTint="?colorOnBackground"
-        app:layout_constraintEnd_toEndOf="@+id/buttonMakeBookmark"
-        app:layout_constraintTop_toTopOf="@+id/buttonMakeBookmark" />
+        app:layout_constraintEnd_toEndOf="@+id/translatedTextTextView"
+        app:layout_constraintTop_toTopOf="@+id/translatedTextTextView" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonCopy"
@@ -101,7 +101,7 @@
         app:iconSize="32dp"
 
         app:iconTint="?colorOnBackground"
-        app:layout_constraintEnd_toEndOf="@+id/buttonContextAction"
-        app:layout_constraintTop_toBottomOf="@+id/buttonContextAction" />
+        app:layout_constraintEnd_toEndOf="@+id/buttonMakeBookmark"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMakeBookmark" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
