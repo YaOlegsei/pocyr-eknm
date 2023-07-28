@@ -9,14 +9,12 @@ import androidx.fragment.app.viewModels
 import com.eknm.oleksiikolotylo.pocyr.R
 import com.eknm.oleksiikolotylo.pocyr.databinding.FragmentBookmarksBinding
 import com.eknm.oleksiikolotylo.pocyr.translate.TranslationFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
 
-    private val viewModel: BookmarksViewModel by viewModels {
-        BookmarksViewModel.getFactory(
-            requireActivity().applicationContext
-        )
-    }
+    private val viewModel: BookmarksViewModel by viewModels ()
     private lateinit var binding: FragmentBookmarksBinding
     private val bookMarksRecyclerAdapter = BookMarksRecyclerAdapter {
         if (it.isEnabled) {

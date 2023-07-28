@@ -14,11 +14,11 @@ import androidx.fragment.app.viewModels
 import com.eknm.oleksiikolotylo.pocyr.R
 import com.eknm.oleksiikolotylo.pocyr.bookmarks.Bookmark
 import com.eknm.oleksiikolotylo.pocyr.databinding.FragmentTranslationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TranslationFragment : Fragment(R.layout.fragment_translation) {
-    private val viewModel: TranslationFragmentViewModel by viewModels {
-        TranslationFragmentViewModel.getFactory(requireActivity().applicationContext)
-    }
+    private val viewModel: TranslationFragmentViewModel by viewModels()
     private val clipboard get() = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     private lateinit var binding: FragmentTranslationBinding
     private val textTranslateInput

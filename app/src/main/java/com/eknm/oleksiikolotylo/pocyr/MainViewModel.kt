@@ -2,9 +2,8 @@ package com.eknm.oleksiikolotylo.pocyr
 
 import androidx.lifecycle.ViewModel
 import com.eknm.oleksiikolotylo.pocyr.bookmarks.BookmarksProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
-    companion object{
-        var BOOKMARKS_PROVIDER: BookmarksProvider? = null
-    }
-}
+@HiltViewModel
+class MainViewModel @Inject constructor(): ViewModel()

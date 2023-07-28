@@ -9,11 +9,15 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import com.eknm.oleksiikolotylo.pocyr.MainViewModel
 import com.eknm.oleksiikolotylo.pocyr.bookmarks.Bookmark
 import com.eknm.oleksiikolotylo.pocyr.bookmarks.BookmarksProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class TranslationFragmentViewModel(private val bookmarksProvider: BookmarksProvider) : ViewModel() {
+@HiltViewModel
+class TranslationFragmentViewModel @Inject constructor(private val bookmarksProvider: BookmarksProvider) :
+    ViewModel() {
 
     private val translator: TextTranslator = PoCyrTranslator
     val translatedTextLiveData: LiveData<String>
@@ -39,22 +43,5 @@ class TranslationFragmentViewModel(private val bookmarksProvider: BookmarksProvi
                 }
             )
         return saveBookmarkLiveData
-    }
-
-    companion object {
-        fun getFactory(applicationContext: Context) = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(
-                modelClass: Class<T>,
-                extras: CreationExtras
-            ): T = if (MainViewModel.BOOKMARKS_PROVIDER != null) {
-                MainViewModel.BOOKMARKS_PROVIDER!!
-            }else{
-                MainViewModel.BOOKMARKS_PROVIDER = BookmarksProvider(applicationContext)
-                MainViewModel.BOOKMARKS_PROVIDER!!
-            }.run {
-                TranslationFragmentViewModel(this) as T
-            }
-        }
     }
 }

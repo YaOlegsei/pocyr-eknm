@@ -15,7 +15,9 @@ import com.eknm.oleksiikolotylo.pocyr.bookmarks.BookmarksFragment
 import com.eknm.oleksiikolotylo.pocyr.databinding.ActivityMainBinding
 import com.eknm.oleksiikolotylo.pocyr.translate.TranslationFragment
 import com.eknm.oleksiikolotylo.pocyr.translate.TranslationFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
