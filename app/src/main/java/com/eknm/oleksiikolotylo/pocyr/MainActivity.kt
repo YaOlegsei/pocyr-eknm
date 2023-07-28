@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private val buttonContextAction get() = binding.toolbar.buttonContextAction
     private val faqView get() = binding.faqView
     private val toolbar get() = binding.toolbar.root
+
+    private val touchInterceptor get() = binding.touchInterceptor
     private val navHostFragment get() = binding.navHostFragment
     private val navController get() = navHostFragment.findNavController()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,15 +40,13 @@ class MainActivity : AppCompatActivity() {
         buttonQuestion.setOnClickListener {
             showFAQ()
         }
-        navHostFragment.setOnClickListener {
-            hideFAQ()
-        }
         setContentView(binding.root)
     }
 
     override fun onStart() {
         super.onStart()
         navController.addOnDestinationChangedListener { controller, destination, _ ->
+            hideFAQ()
             if (destination.id == R.id.bookmarkFragment) {
                 buttonContextAction.setIconResource(R.drawable.ic_arrow_back)
                 buttonContextAction.setOnClickListener {
@@ -63,11 +63,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
-
     private fun hideFAQ() {
+        touchInterceptor.setOnTouchListener(null)
+        touchInterceptor.isVisible = false
         faqView
             .animate()
             .translationY(-toolbar.height.toFloat())
@@ -86,6 +84,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFAQ() {
+        touchInterceptor.setOnTouchListener { v, event ->
+            hideFAQ()
+            false
+        }
+        touchInterceptor.isVisible = true
         faqView
             .animate()
             .setDuration(500L)

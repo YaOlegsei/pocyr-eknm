@@ -3,24 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textTranslateInput"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="top"
-        android:hint="@string/textInputLabelTranslator"
-        android:textColor="?colorOnPrimary"
-        android:textSize="16sp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
+
         app:layout_constraintBottom_toTopOf="@id/dividerContainer"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ja pierdole jakie bydlo" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textTranslateInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            android:gravity="top"
+            android:hint="@string/textInputLabelTranslator"
+            android:imeOptions="actionGo"
+            android:inputType="textAutoComplete"
+            android:textColor="?colorOnPrimary"
+            android:textSize="32sp"
+            tools:text="Ja pierdole jakie bydlo" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -62,13 +79,14 @@
         android:id="@+id/translatedTextTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:textColor="?colorOnPrimary"
-        android:textSize="16sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/textTranslateInput"
-        app:layout_constraintStart_toStartOf="@id/textTranslateInput"
+        app:layout_constraintEnd_toStartOf="@id/buttonCopy"
+        app:layout_constraintStart_toStartOf="@id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/dividerContainer"
         tools:text="Я пєрдоле якє бидўо" />
 
@@ -77,6 +95,7 @@
         style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         app:icon="@drawable/ic_bookmark_add"
@@ -84,7 +103,7 @@
         app:iconPadding="0dp"
         app:iconSize="32dp"
         app:iconTint="?colorOnBackground"
-        app:layout_constraintEnd_toEndOf="@+id/translatedTextTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/translatedTextTextView" />
 
     <com.google.android.material.button.MaterialButton

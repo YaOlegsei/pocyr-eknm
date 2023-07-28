@@ -1,5 +1,6 @@
 package com.eknm.oleksiikolotylo.pocyr.translate
 
+import android.animation.LayoutTransition
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -36,6 +37,7 @@ class TranslationFragment : Fragment(R.layout.fragment_translation) {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentTranslationBinding.inflate(inflater, container, false)
+        binding.root.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
         viewModel.translatedTextLiveData.observe(viewLifecycleOwner) { translatedText ->
             translatedTextTextView.text = translatedText
         }

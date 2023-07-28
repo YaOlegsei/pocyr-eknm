@@ -6,33 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <FrameLayout
-        android:id="@+id/faqView"
-        android:alpha="1"
-        android:background="?colorPrimary"
-        android:visibility="gone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        tools:visibility="visible"
-        >
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_margin="16dp"
-            android:textColor="?colorOnPrimary"
-            android:text="@string/loremipsum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </FrameLayout>
-    <include
-        android:elevation="10dp"
-        android:id="@+id/toolbar"
-        layout="@layout/layout_toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -46,5 +19,41 @@
 
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:navGraph="@navigation/nav_graph" />
+
+    <FrameLayout
+        android:id="@+id/faqView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        android:visibility="gone"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        tools:visibility="visible">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/loremipsum"
+            android:textColor="?colorOnPrimary" />
+    </FrameLayout>
+
+    <View
+        android:id="@+id/touchInterceptor"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/faqView" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
