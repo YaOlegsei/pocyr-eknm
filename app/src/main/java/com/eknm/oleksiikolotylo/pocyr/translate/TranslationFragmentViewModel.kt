@@ -1,12 +1,8 @@
 package com.eknm.oleksiikolotylo.pocyr.translate
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.CreationExtras
-import com.eknm.oleksiikolotylo.pocyr.MainViewModel
 import com.eknm.oleksiikolotylo.pocyr.bookmarks.Bookmark
 import com.eknm.oleksiikolotylo.pocyr.bookmarks.BookmarksProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,9 +12,10 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class TranslationFragmentViewModel @Inject constructor(private val bookmarksProvider: BookmarksProvider) :
+class TranslationFragmentViewModel @Inject constructor(
+    private val bookmarksProvider: BookmarksProvider,
+) :
     ViewModel() {
-
     private val translator: TextTranslator = PoCyrTranslator
     val translatedTextLiveData: LiveData<String>
         get() = _translatedTextLiveData

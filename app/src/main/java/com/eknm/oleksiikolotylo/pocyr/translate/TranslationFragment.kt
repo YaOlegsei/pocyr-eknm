@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getSystemService
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -37,17 +37,20 @@ class TranslationFragment : Fragment(R.layout.fragment_translation) {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentTranslationBinding.inflate(inflater, container, false)
-        binding.root.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.translationContainer.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.textTranslateInput.setHorizontallyScrolling(false)
+        binding.textTranslateInput.maxLines = 50
+        translatedTextTextView.setOnLongClickListener {
+            copyText()
+            true
+        }
         viewModel.translatedTextLiveData.observe(viewLifecycleOwner) { translatedText ->
             translatedTextTextView.text = translatedText
         }
         textTranslateInput.doOnTextChanged { text, _, _, _ ->
             viewModel.translateText(text.toString())
         }
-        buttonCopy.setOnClickListener {
-            val clip = ClipData.newPlainText("PoCyr translation", translatedTextTextView.text)
-            clipboard.setPrimaryClip(clip)
-        }
+        buttonCopy.setOnClickListener { copyText() }
 
         buttonMakeBookmark.setOnClickListener {
             //TODO: Add loading state
@@ -58,5 +61,10 @@ class TranslationFragment : Fragment(R.layout.fragment_translation) {
                 }
         }
         return binding.root
+    }
+
+    private fun copyText() {
+        val clip = ClipData.newPlainText("PoCyr translation", translatedTextTextView.text)
+        clipboard.setPrimaryClip(clip)
     }
 }
