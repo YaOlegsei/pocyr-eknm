@@ -48,7 +48,6 @@
                 tools:text="Ja pierdole jakie bydlo" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/dividerContainer"
             android:layout_width="match_parent"
