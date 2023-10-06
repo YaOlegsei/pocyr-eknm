@@ -4,16 +4,10 @@ import android.animation.Animator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import com.eknm.oleksiikolotylo.pocyr.bookmarks.BookmarksFragment
 import com.eknm.oleksiikolotylo.pocyr.databinding.ActivityMainBinding
-import com.eknm.oleksiikolotylo.pocyr.translate.TranslationFragment
 import com.eknm.oleksiikolotylo.pocyr.translate.TranslationFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,18 +21,22 @@ class MainActivity : AppCompatActivity() {
     private val faqView get() = binding.faqView
     private val toolbar get() = binding.toolbar.root
 
+    private var isFaqVisible = false
+
     private val touchInterceptor get() = binding.touchInterceptor
     private val navHostFragment get() = binding.navHostFragment
     private val navController get() = navHostFragment.findNavController()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(
-            LayoutInflater.from(this),
-            null,
-            false
+            LayoutInflater.from(this), null, false
         )
         buttonQuestion.setOnClickListener {
-            showFAQ()
+            if (isFaqVisible) {
+                hideFAQ()
+            } else {
+                showFAQ()
+            }
         }
         setContentView(binding.root)
     }
@@ -64,12 +62,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hideFAQ() {
+        isFaqVisible = false
         touchInterceptor.setOnTouchListener(null)
         touchInterceptor.isVisible = false
-        faqView
-            .animate()
-            .translationY(-toolbar.height.toFloat())
-            .setDuration(500L)
+        faqView.animate().translationY(-toolbar.height.toFloat()).setDuration(500L)
             .setListener(object : Animator.AnimatorListener {
                 override fun onAnimationCancel(animation: Animator) {}
 
@@ -84,15 +80,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFAQ() {
+        isFaqVisible = true
         touchInterceptor.setOnTouchListener { v, event ->
             hideFAQ()
             false
         }
         touchInterceptor.isVisible = true
-        faqView
-            .animate()
-            .setDuration(500L)
-            .translationY(toolbar.height.toFloat())
+        faqView.animate().setDuration(500L).translationY(toolbar.height.toFloat())
             .setListener(object : Animator.AnimatorListener {
                 override fun onAnimationCancel(animation: Animator) {}
 

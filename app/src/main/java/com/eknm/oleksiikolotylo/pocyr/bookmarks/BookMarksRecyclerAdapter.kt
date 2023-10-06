@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.eknm.oleksiikolotylo.pocyr.databinding.ItemBookmarkBinding
 
-class BookMarksRecyclerAdapter(private val onBookMarkClickAction: (ManipulatedBookmark) -> Unit) :
+class BookMarksRecyclerAdapter(
+    private val onBookMarkClickAction: (ManipulatedBookmark) -> Unit,
+    private val onBookMarkRemoveClickAction: (ManipulatedBookmark) -> Unit,
+) :
     ListAdapter<BookMarksRecyclerAdapter.ManipulatedBookmark, BookMarksRecyclerAdapter.BookmarkViewHolder>(
         BOOKMARK_ITEM_CALLBACK
     ) {
@@ -31,6 +34,9 @@ class BookMarksRecyclerAdapter(private val onBookMarkClickAction: (ManipulatedBo
 
         fun bind(bookmark: ManipulatedBookmark) {
             itemBookmarkBinding.removeBookmarkIcon.setOnClickListener {
+                onBookMarkRemoveClickAction(bookmark)
+            }
+            itemBookmarkBinding.root.setOnClickListener {
                 onBookMarkClickAction(bookmark)
             }
             itemBookmarkBinding.bookmarkTextView.text = bookmark.bookmark.savedText

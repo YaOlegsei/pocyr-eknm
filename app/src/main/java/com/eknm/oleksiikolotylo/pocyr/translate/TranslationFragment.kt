@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.eknm.oleksiikolotylo.pocyr.R
 import com.eknm.oleksiikolotylo.pocyr.bookmarks.Bookmark
 import com.eknm.oleksiikolotylo.pocyr.databinding.FragmentTranslationBinding
@@ -31,6 +32,8 @@ class TranslationFragment : Fragment(R.layout.fragment_translation) {
 
     private val buttonCopy
         get() = binding.buttonCopy
+
+    private val navController get() = binding.root.findNavController()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -60,6 +63,19 @@ class TranslationFragment : Fragment(R.layout.fragment_translation) {
                 }
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController.currentBackStackEntry?.savedStateHandle?.getLiveData<String>("bookmark")
+            ?.observe(
+                viewLifecycleOwner
+            ) { bookmark ->
+                if (bookmark.isNotEmpty()) {
+                    navController.currentBackStackEntry?.savedStateHandle?.set("bookmark", "")
+                    textTranslateInput.setText(bookmark)
+                }
+            }
     }
 
     private fun copyText() {
