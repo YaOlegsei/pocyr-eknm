@@ -44,6 +44,7 @@
                 android:maxLines="10"
                 android:paddingTop="0dp"
                 android:textColor="?colorOnPrimary"
+                android:textCursorDrawable="@drawable/cursor"
                 android:textSize="32sp"
                 tools:text="Ja pierdole jakie bydlo" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -87,7 +88,6 @@
             android:id="@+id/translatedTextTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:textColor="?colorOnPrimary"
@@ -107,13 +107,13 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             app:icon="@drawable/ic_bookmark_add"
-            tools:icon="@drawable/ic_bookmark_filled"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
             app:iconSize="32dp"
             app:iconTint="?colorOnBackground"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/translatedTextTextView" />
+            app:layout_constraintTop_toTopOf="@+id/translatedTextTextView"
+            tools:icon="@drawable/ic_bookmark_filled" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCopy"

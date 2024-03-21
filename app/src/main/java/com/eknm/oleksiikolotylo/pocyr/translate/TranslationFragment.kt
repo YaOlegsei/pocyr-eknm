@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.os.LocaleList
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.eknm.oleksiikolotylo.pocyr.R
 import com.eknm.oleksiikolotylo.pocyr.bookmarks.Bookmark
 import com.eknm.oleksiikolotylo.pocyr.databinding.FragmentTranslationBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class TranslationFragment : Fragment(R.layout.fragment_translation) {
@@ -50,6 +52,7 @@ class TranslationFragment : Fragment(R.layout.fragment_translation) {
         viewModel.translatedTextLiveData.observe(viewLifecycleOwner) { translatedText ->
             translatedTextTextView.text = translatedText
         }
+        textTranslateInput.imeHintLocales = LocaleList(Locale("pl"))
         textTranslateInput.doOnTextChanged { text, _, _, _ ->
             viewModel.textToTranslate = text.toString()
         }

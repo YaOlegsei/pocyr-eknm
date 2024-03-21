@@ -34,7 +34,7 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
             if (it.isEnabled) {
                 navController.previousBackStackEntry?.savedStateHandle?.set(
                     "bookmark",
-                    it.bookmark.originalText
+                    it.bookmark.translatedText
                 )
                 navController.popBackStack()
             }
