@@ -106,6 +106,7 @@ object PoCyrTranslator : TextTranslator {
         "йо" to "ё",
         "йі" to "ї",
         "йу" to "ю",
+        "йе" to "є",
     )
 
     private val vowels = listOf(

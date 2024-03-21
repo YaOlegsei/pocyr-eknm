@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,17 +51,24 @@ class TranslationFragment : Fragment(R.layout.fragment_translation) {
             translatedTextTextView.text = translatedText
         }
         textTranslateInput.doOnTextChanged { text, _, _, _ ->
-            viewModel.translateText(text.toString())
+            viewModel.textToTranslate = text.toString()
         }
-        buttonCopy.setOnClickListener { copyText() }
+        buttonCopy.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            copyText()
+        }
 
         buttonMakeBookmark.setOnClickListener {
-            //TODO: Add loading state
-            viewModel
-                .makeBookmark(Bookmark(textTranslateInput.text.toString()))
-                .observe(viewLifecycleOwner) {
-                    //TODO handle adding
-                }
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            viewModel.makeBookmark()
+        }
+        viewModel.bookmarkStateLiveData.observe(viewLifecycleOwner) { state ->
+            buttonMakeBookmark.isEnabled = state == BookmarkState.NotSaved
+            when (state) {
+                BookmarkState.NotSaved -> R.drawable.ic_bookmark_add
+                BookmarkState.Loading -> R.drawable.ic_bookmark_add
+                BookmarkState.Saved -> R.drawable.ic_bookmark_filled
+            }.let(buttonMakeBookmark::setIconResource)
         }
         return binding.root
     }

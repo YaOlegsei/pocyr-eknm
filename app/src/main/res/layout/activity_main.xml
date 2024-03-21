@@ -21,10 +21,11 @@
         app:navGraph="@navigation/nav_graph" />
 
     <FrameLayout
+        tools:layout_marginTop="100dp"
         android:id="@+id/faqView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?colorPrimary"
+        android:background="@drawable/popup_bg"
         android:visibility="gone"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:textSize="18sp"
             android:text="@string/loremipsum"
             android:textColor="?colorOnPrimary" />
     </FrameLayout>

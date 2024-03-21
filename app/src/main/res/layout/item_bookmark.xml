@@ -5,28 +5,90 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/removeBookmarkIcon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_margin="12dp"
-        android:src="@drawable/ic_bookmark_remove"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:hapticFeedbackEnabled="true"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:icon="@drawable/ic_bookmark_remove"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="32dp"
+
+        app:iconTint="?colorOnBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="?colorOnBackground" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/bookmarkTextView"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonCopy"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:hapticFeedbackEnabled="true"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:icon="@drawable/ic_content_copy"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="32dp"
+
+        app:iconTint="?colorOnBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/removeBookmarkIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonInput"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:hapticFeedbackEnabled="true"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:icon="@drawable/ic_fill_in"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="32dp"
+
+        app:iconTint="?colorOnBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCopy"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_marginEnd="8dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textColor="?colorOnPrimary"
-        android:textSize="14sp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/removeBookmarkIcon"
+        app:layout_constraintEnd_toStartOf="@id/buttonInput"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ja pierdole jakie bydlo" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/bookmarkTranslation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:textColor="?colorOnPrimary"
+            android:textSize="16sp"
+            tools:text="Я пердоле" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/bookmarkOriginal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:textColor="?colorOnPrimary"
+            android:textSize="16sp"
+            tools:text="Ja pierdole jakie bydlo" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.eknm.oleksiikolotylo.pocyr.bookmarks
 
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +11,8 @@ import com.eknm.oleksiikolotylo.pocyr.databinding.ItemBookmarkBinding
 class BookMarksRecyclerAdapter(
     private val onBookMarkClickAction: (ManipulatedBookmark) -> Unit,
     private val onBookMarkRemoveClickAction: (ManipulatedBookmark) -> Unit,
+    private val onBookMarkCopyClickAction: (ManipulatedBookmark) -> Unit,
+    private val onBookMarkInputClickAction: (ManipulatedBookmark) -> Unit,
 ) :
     ListAdapter<BookMarksRecyclerAdapter.ManipulatedBookmark, BookMarksRecyclerAdapter.BookmarkViewHolder>(
         BOOKMARK_ITEM_CALLBACK
@@ -34,12 +37,30 @@ class BookMarksRecyclerAdapter(
 
         fun bind(bookmark: ManipulatedBookmark) {
             itemBookmarkBinding.removeBookmarkIcon.setOnClickListener {
+                if (bookmark.isEnabled) {
+                    it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
                 onBookMarkRemoveClickAction(bookmark)
             }
             itemBookmarkBinding.root.setOnClickListener {
                 onBookMarkClickAction(bookmark)
             }
-            itemBookmarkBinding.bookmarkTextView.text = bookmark.bookmark.savedText
+
+            itemBookmarkBinding.buttonCopy.setOnClickListener {
+                if (bookmark.isEnabled) {
+                    it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
+                onBookMarkCopyClickAction(bookmark)
+            }
+            itemBookmarkBinding.buttonInput.setOnClickListener {
+                if (bookmark.isEnabled) {
+                    it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
+                onBookMarkInputClickAction(bookmark)
+            }
+            itemBookmarkBinding.bookmarkOriginal.text = bookmark.bookmark.originalText
+            itemBookmarkBinding.bookmarkTranslation.text = bookmark.bookmark.translatedText
+
         }
     }
 

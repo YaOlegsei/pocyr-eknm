@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Bookmark(
     @PrimaryKey
-    val savedText: String
+    val originalText: String,
+    val translatedText: String
 )
 

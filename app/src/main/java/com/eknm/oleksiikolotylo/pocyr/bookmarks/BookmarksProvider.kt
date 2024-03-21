@@ -16,7 +16,8 @@ class BookmarksProvider @Inject constructor(
     private val db: Database = Room.databaseBuilder(
         applicationContext,
         Database::class.java, "database-name"
-    ).build()
+    ).fallbackToDestructiveMigration()
+        .build()
 
     private val bookmarksDao
         get() = db.bookmarkDao()

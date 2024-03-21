@@ -19,14 +19,14 @@
             android:layout_height="wrap_content"
             android:insetTop="0dp"
             android:insetBottom="0dp"
+            app:icon="@drawable/ic_to_book_marks"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
             app:iconSize="32dp"
-            app:iconTint="?colorOnPrimary"
+            app:iconTint="?colorOnBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:icon="@drawable/ic_to_book_marks"
             tools:icon="@drawable/ic_arrow_back" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -36,12 +36,12 @@
             android:text="@string/poCyr"
             android:textColor="?colorOnPrimary"
             android:textSize="24sp"
-            tools:text="ds dd
-ddd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/buttonQuestion"
             app:layout_constraintStart_toEndOf="@id/buttonContextAction"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ds dd
+ddd" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonQuestion"
@@ -51,7 +51,7 @@ ddd"
             app:icon="@drawable/ic_question_mark"
             app:iconGravity="textStart"
             app:iconSize="32dp"
-            app:iconTint="?colorOnPrimary"
+            app:iconTint="?colorOnBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
