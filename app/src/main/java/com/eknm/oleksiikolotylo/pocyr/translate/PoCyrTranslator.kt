@@ -42,7 +42,6 @@ object PoCyrTranslator : TextTranslator {
         "y" to "ы",
         "z" to "з",
         "ż" to "ж",
-        "ż" to "ж",
         "ź" to "жь",
     )
 
@@ -61,7 +60,6 @@ object PoCyrTranslator : TextTranslator {
     )
 
     private val complexL3 = mapOf(
-        "szcz" to "щ",// шч
         "prz" to "пш",
         "trz" to "тш",
         "krz" to "кш",
@@ -69,37 +67,54 @@ object PoCyrTranslator : TextTranslator {
         "chw" to "хф",
     )
 
-    private val complexL4 = mapOf(
+    private val complexL5 = mapOf(
+        //before  ł и l - o e
         "ął" to "оł",
         "ęł" to "еł",
-
-        "ęk" to "еньk",
+        "ąl" to "оl",
+        "ęl" to "еl",
+        //before b, p - m
+        "ąb" to "омб",
+        "ąp" to "омп",
+        "ęb" to "омб",
+        "ęp" to "омп",
+        //before ć (ci), dź - нь
+        "ąć" to "оньć",
+        "ąci" to "оньci",
+        "ądź" to "оньdź",
         "ęć" to "еньć",
+        "ęci" to "еньci",
         "ędź" to "eньdź",
 
-        "ąk" to "оньk",
-        "ąć" to "оньć",
-        "ądź" to "оньdź",
+        //before t, dz, cz - n
+        "ęt" to "ент",
+        "ędz" to "енdz",
+        "ęcz" to "енч",
+        "ąt" to "онт",
+        "ądz" to "онdz",
+        "ącz" to "онч",
 
+        //before g, k - ng
+        "ąk" to "оньк",
+        "ąg" to "eнг",
+        "ęk" to "енк",
+        "ęg" to "eнг",
+    )
+
+    private val complexL4 = mapOf(
+        //before d, с, - n
         "ęd" to "енd",
-        "ęt" to "енt",
-        "ęg" to "eнg",
-        "ęm" to "eнm",
-
-        "ąd" to "енd",
-        "ąt" to "енt",
-        "ąg" to "eнg",
-        "ąm" to "eнm",
+        "ęc" to "енc",
+        "ąc" to "онc",
+        "ąd" to "онd",
     )
 
     private val doubleSoundSoftCyrillicMapping = mapOf(
         "ьа" to "я",
         "ьо" to "ё",
         "ье" to "є",
-        "ьі" to "ї",
         "ьу" to "ю",
-
-        )
+    )
 
     private val doubleSoundHardMapping = mapOf(
         "йа" to "я",
@@ -195,12 +210,14 @@ object PoCyrTranslator : TextTranslator {
         return word
             .lowercase()
             .removeIInCombination()
+            .replaceWithMap(complexL5)
             .replaceWithMap(complexL4)
             .replaceWithMap(complexL3)
             .replaceWithMap(complexL2)
             .replaceWithMap(simpleLetterMapping)
             .replaceWithMap(doubleSoundSoftCyrillicMapping)
             .replaceWithDoubleSound()
+            .replaceWithMap(mapOf("шч" to "щ"))
             .let { cyrillicWord ->
                 when {
                     isAllUpper -> cyrillicWord.uppercase()

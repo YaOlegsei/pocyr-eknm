@@ -27,7 +27,7 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
             }
         },
         onBookMarkCopyClickAction = {
-            val clip = ClipData.newPlainText("PoCyr translation", it.bookmark.originalText)
+            val clip = ClipData.newPlainText("PoCyr translation", it.bookmark.translatedText)
             clipboard.setPrimaryClip(clip)
         },
         onBookMarkInputClickAction = {
