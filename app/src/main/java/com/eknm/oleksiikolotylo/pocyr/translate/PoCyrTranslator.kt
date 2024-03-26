@@ -217,7 +217,12 @@ object PoCyrTranslator : TextTranslator {
             .replaceWithMap(simpleLetterMapping)
             .replaceWithMap(doubleSoundSoftCyrillicMapping)
             .replaceWithDoubleSound()
-            .replaceWithMap(mapOf("шч" to "щ"))
+            .replaceWithMap(
+                mapOf(
+                    "шч" to "щ",
+                    "шьч" to "щь"
+                )
+            )
             .let { cyrillicWord ->
                 when {
                     isAllUpper -> cyrillicWord.uppercase()
@@ -225,6 +230,7 @@ object PoCyrTranslator : TextTranslator {
                         cyrillicWord.take(firstUpperPos) +
                                 cyrillicWord[firstUpperPos].uppercase() +
                                 cyrillicWord.takeLast(cyrillicWord.length - firstUpperPos - 1)
+
                     else -> cyrillicWord
                 }
             }

@@ -4,5 +4,5 @@
     <string name="textInputLabelTranslator">Enter text in Polish</string>
     <string name="translateFragmentLabel" translatable="false">tfL</string>
     <string name="bookmarkFragmentLabel" translatable="false">bmfl</string>
-    <string name="loremipsum">This is an extremely offencive app for polish speaker. However the authors had no intention to insult any polish. Sorry.</string>
+    <string name="loremipsum">This text transliteration app is useful for entertainment, scientific research and ecological activism (it is proven to reduce total text size). Currently only Polish language is supported.We don\'t mean to offend anyone and condemn any related language discrimination.Visit <a href="https://hub.eknm.in">eknm.in</a> for more details.</string>
 </resources>

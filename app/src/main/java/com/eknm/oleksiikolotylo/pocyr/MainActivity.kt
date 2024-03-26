@@ -3,6 +3,7 @@ package com.eknm.oleksiikolotylo.pocyr
 import android.animation.Animator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 showFAQ()
             }
         }
+        binding.faqText.movementMethod = LinkMovementMethod.getInstance()
         setContentView(binding.root)
     }
 
