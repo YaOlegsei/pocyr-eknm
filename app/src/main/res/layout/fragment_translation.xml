@@ -17,9 +17,9 @@
             android:id="@+id/textInputLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="32dp"
+            android:layout_marginVertical="32dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="0dp"
             android:gravity="top"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
@@ -27,7 +27,7 @@
             app:hintEnabled="false"
 
             app:layout_constraintBottom_toTopOf="@id/dividerContainer"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/buttonClearText"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -50,6 +50,26 @@
                 android:textSize="32sp"
                 tools:text="Ja pierdole jakie bydlo" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonClearText"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:hapticFeedbackEnabled="true"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_cleartext_v1"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="42dp"
+            app:iconTint="?colorOnBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textInputLayout"
+            tools:icon="@drawable/ic_cleartext_v1" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/dividerContainer"

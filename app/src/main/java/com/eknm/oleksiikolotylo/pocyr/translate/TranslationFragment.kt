@@ -33,6 +33,9 @@ class TranslationFragment : Fragment(R.layout.fragment_translation) {
     private val buttonMakeBookmark
         get() = binding.buttonMakeBookmark
 
+    private val buttonClearText
+        get() = binding.buttonClearText
+
     private val buttonCopy
         get() = binding.buttonCopy
 
@@ -54,8 +57,19 @@ class TranslationFragment : Fragment(R.layout.fragment_translation) {
         }
         textTranslateInput.imeHintLocales = LocaleList(Locale("pl"))
         textTranslateInput.doOnTextChanged { text, _, _, _ ->
+            if (text?.isNotEmpty() == true) {
+                buttonClearText.visibility = View.VISIBLE
+            } else {
+                buttonClearText.visibility = View.INVISIBLE
+            }
+
             viewModel.textToTranslate = text.toString()
         }
+
+        buttonClearText.setOnClickListener {
+            textTranslateInput.text = null
+        }
+
         buttonCopy.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             copyText()

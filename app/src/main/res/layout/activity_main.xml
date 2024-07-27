@@ -21,6 +21,7 @@
         app:navGraph="@navigation/nav_graph" />
 
     <FrameLayout
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:id="@+id/faqView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -29,8 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        tools:layout_marginTop="100dp"
+        app:layout_constraintBottom_toTopOf="@id/toolbar"
         tools:visibility="visible">
 
         <com.google.android.material.textview.MaterialTextView

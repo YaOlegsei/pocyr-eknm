@@ -176,7 +176,7 @@ object PoCyrTranslator : TextTranslator {
     private fun String.replaceWithDoubleSound(): String {
         var result = this
         val cyrillicVowels = listOf(
-            "а", "е", "э", "ё", "і", "о", "у", "ю", "я", "ї", "ъ", "ь"
+            "а", "е", "э", "ё", "і", "о", "у", "ю", "я", "ї", "'", "ь","є"
         )
         doubleSoundHardMapping.forEach { (combination, replacement) ->
             while (result.indexOf(combination) >= 0) {
@@ -188,7 +188,7 @@ object PoCyrTranslator : TextTranslator {
                 ) {
                     result.replaceFirst(combination, replacement)
                 } else {
-                    result.replaceFirst(combination, "ъ$replacement")
+                    result.replaceFirst(combination, "'$replacement")
                 }
             }
         }

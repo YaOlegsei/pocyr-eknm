@@ -13,9 +13,9 @@ android {
         applicationId "com.eknm.oleksiikolotylo.pocyr"
         minSdk 26
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
-        archivesBaseName = "$applicationName-v$versionCode-$versionName"
+        versionCode 3
+        versionName "1.1"
+        archivesBaseName = "$applicationName-v$versionName.$versionCode"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
